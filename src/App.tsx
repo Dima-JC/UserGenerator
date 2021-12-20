@@ -1,12 +1,13 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
 import './App.scss';
-
-
+// import { dataSelector } from './redux/selectors';
 
 function App() {
   const [appState, setAppState] = useState();
+  // const selector = useSelector((state: any) => state.receivedData)
 
   useEffect(() => {
     const apiUrl = 'https://randomuser.me/api/';
@@ -18,7 +19,10 @@ function App() {
 
   console.log(appState);
   
-
+  
+  // console.log(selector);
+  
+  
   return (
     <div className="App">
       <header className="App-header">
