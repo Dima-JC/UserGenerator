@@ -1,5 +1,16 @@
-import React from "react";
+import { DATA_RECEIVED } from "./types";
 
-export default function rootReduser(state: any, { type, payload, data, statuses }: any){
-    return state
+const initialState: any = {
+    receivedData: [],
 }
+
+export default function RootReducer(state: any = initialState, { type, payload, data, pageName }: any){  
+    switch (type) {
+        case DATA_RECEIVED:            
+            return { ...state, receivedData: state.receivedData = data }
+        default: 
+            return state
+    }
+}
+
+export type RootState = ReturnType<typeof RootReducer>;

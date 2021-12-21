@@ -1,0 +1,16 @@
+.users {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    padding: 25px;
+
+    .cartUser_img {
+        .img {
+            border-radius: 50%;
+        }
+    }
+    
+    .cartUser_info {}
+}

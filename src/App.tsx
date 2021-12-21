@@ -1,34 +1,18 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import React from 'react';
+
+import Container from './components/container';
 
 import './App.scss';
-// import { dataSelector } from './redux/selectors';
+import { Route, Routes } from 'react-router-dom';
+import RoutLogin from './components/routLogin';
 
-function App() {
-  const [appState, setAppState] = useState();
-  // const selector = useSelector((state: any) => state.receivedData)
+const App: React.FC = () => {
 
-  useEffect(() => {
-    const apiUrl = 'https://randomuser.me/api/';
-    axios.get(apiUrl).then((resp) => {
-      const allPersons = resp.data;
-      setAppState(allPersons);
-    });
-  }, [setAppState]);
-
-  console.log(appState);
-  
-  
-  // console.log(selector);
-  
-  
   return (
-    <div className="App">
-      <header className="App-header">
-          Learn React
-      </header>
-    </div>
+      <Routes>
+        <Route path='/login' element={<RoutLogin/>}/>
+        <Route path='/users' element={<Container/>}/>
+      </Routes>
   );
 }
 

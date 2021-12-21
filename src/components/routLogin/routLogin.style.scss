@@ -1,0 +1,14 @@
+.login {
+    background: linear-gradient(45deg, #a8edea, #fed6e3);
+    .button {
+        position: absolute;
+        left: 43%;
+        top: 30%;
+        width: 180px;
+        height: 80px;
+        border-radius: 8px;
+        border: solid #acdcd3 1px;
+        background: linear-gradient(45deg, #a8edea, #fed6e3);
+        cursor: pointer;
+    }
+}
