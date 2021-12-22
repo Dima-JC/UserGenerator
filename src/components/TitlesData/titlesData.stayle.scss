@@ -6,11 +6,35 @@
     flex-direction: row;
     padding: 25px;
 
-    .cartUser_img {
-        .img {
-            border-radius: 50%;
+    .cartUser {
+        width: 250px;
+        height: 350px;
+        margin: 20px;
+        border-radius: 8px;
+        display: flex;
+        border: solid silver 1px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        cursor: pointer;
+
+        .cartUser_img {
+            .img {
+                border-radius: 50%;
+            }
         }
     }
-    
-    .cartUser_info {}
+
+    a {
+        text-decoration: none;
+        color: #292D45;
+    }
+
+    .male {
+        background-color: #e899dc;
+    }
+
+    .female {
+        background-color: #01baef;
+    }
 }

@@ -2,4 +2,4 @@ import axios from "axios";
 
 import { URL } from "../constants/constants";
 
-export const GET = async() => await axios.get(URL)
+export const GET: any = async() => await axios.get(URL)

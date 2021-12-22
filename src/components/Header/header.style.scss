@@ -1,17 +1,41 @@
-.header{
+.header {
     width: 100%;
     height: 80px;
-    border: solid silver 2px;
+    border-bottom: solid #acdcd3 1px;
     display: flex;
     justify-content: space-between;
-    .header_logo{
+    background: linear-gradient(45deg, #a8edea, #fed6e3);
 
-        .header_logo-img{
+    .header_logo {
+        margin-left: 30px;
+
+        .header_logo-img {
             width: 70px;
             height: 70px;
         }
     }
-    .header_rout-button{
+    .header_buttons {
+        display: flex;
+        align-items: center;
 
+        .header_rout-button {
+            min-width: 300px;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-right: 30px;
+
+            .button {
+                min-width: 80px;
+                max-width: 130px;
+                height: 35px;
+                margin-right: 10px;
+                border-radius: 8px;
+                cursor: pointer;
+                border: solid #acdcd3 1px;
+                background: linear-gradient(45deg, #a8edea91, #fed6e347);
+            }
+        }
     }
 }

@@ -1,11 +1,15 @@
 import Header from "../Header";
-import TitlesData from "../TitlesData";
 
-const Container = () => {
+interface Props {
+    component: React.ReactElement;
+    setLocale: React.Dispatch<React.SetStateAction<any>>;
+}
+
+const Container = ({setLocale, component}: Props) => {
     return(
         <>
-            <Header/>
-            <TitlesData/>
+            <Header setLocale={setLocale} />
+            {component}
         </>
     )
 }

@@ -1,69 +1,51 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo } from "react";
+import { FormattedMessage } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
-import { getData } from "../../redux/actions";
-import { dataSelector } from "../../redux/selectors";
-import { GET } from "../../requests";
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import { addUserInfo } from "../../redux/actions";
+import { dataSelector, isLoading } from "../../redux/selectors";
 
 import './titlesData.stayle.scss'
 
 const TitlesData = () => {
-
-    const genderColor = '#01baef';
-
-    const UserCard = styled.div`
-        width: 200px;
-        height: 315px;
-        margin-bottom: 35px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        border: solid silver 2px;
-        border-radius: 10px;
-        background-color: ${genderColor};
-    `;
-
+    const selector = useSelector(dataSelector).data.results
+    const loading = useSelector(isLoading)
     const dispatch = useDispatch()
-    const selector = useSelector(dataSelector)
-
-    const fetchUsers = async () => {
-        const user = await GET();
-        const data = user.data.results;
-        dispatch(getData(data))
-    };
-
-    useEffect(() => {
-        fetchUsers()
-    }, [])
+    const addInfoIser = (item: any) => dispatch(addUserInfo([item]))
 
     const mappedData = (item: any) => {
-        // if(item.gender === 'male') {
-        //     genderColor = '#01baef'
-        // } else {
-        //     genderColor = '#e899dc'
-        // }
-
+        const className = item.gender === 'female'
+            ? 'male'
+            : 'female';
         return (
-            <UserCard key={item.login.uuid}>
-                <div className='cartUser_img'>
-                    <img src={item.picture.large} alt="alt" className='img' />
-                </div>
-                <div className='cartUser_info'>
-                    <p>last name - {item.name.last}</p>
-                    <p>first name - {item.name.first}</p>
-                    <p>gender - {item.gender}</p>
-                    <p>{item.dob.date.slice(0, 10)}</p>
-                </div>
-            </UserCard>
+            <div key={item.login.uuid} onClick={() => addInfoIser(item)} >
+                <Link to='/user_info' className={'cartUser ' + className}>
+                    <div className='cartUser_img'>
+                        <img src={item.picture.large} alt="alt" className='img' />
+                    </div>
+                    <div className='cartUser_info'>
+                        <p><FormattedMessage id='last name' /> - {item.name.last}</p>
+                        <p><FormattedMessage id='first name' /> - {item.name.first}</p>
+                        <p><FormattedMessage id='gender' /> - {item.gender}</p>
+                        <p><FormattedMessage id='Date Birth' /> - {item.dob.date.slice(0, 10)}</p>
+                    </div>
+                </Link>
+            </div>
         )
     }
 
-    const dataMap = selector.map(mappedData)
+    const dataMap = useMemo(() => selector.map(mappedData), [selector])
 
     return (
-        <div className='users'>{dataMap}</div>
+        <>
+            {!loading
+                ? 'Loading'
+                : <div className='users' >{dataMap}</div>
+            }
+        </>
     )
 }
 
 export default TitlesData;
+
+

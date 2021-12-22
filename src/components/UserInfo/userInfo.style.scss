@@ -1,0 +1,34 @@
+.userInfo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+
+    .userInfo_cart {
+        width: 650px;
+        height: 315px;
+        display: flex;
+        border: solid silver 1px;
+        border-radius: 8px;
+        margin-top: 50px;
+        justify-content: space-around;
+        background: linear-gradient(45deg, #a8edea, #fed6e3);
+
+        .userInfo_cart__photo {
+            width: 220px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+
+            img {
+                margin-top: 15px;
+                width: 180px;
+                border-radius: 8px;
+            }
+        }
+    }
+    .warning{
+        color: red;
+        font-size: 20px;
+    }
+}
