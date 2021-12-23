@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { IntlProvider } from "react-intl";
 
-import { Route, Routes } from 'react-router-dom';
-import RoutLogin from './components/routLogin';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import Login from './components/Login';
 import { PrivateRoute } from './PrivateRoute';
 import UserInfo from './components/UserInfo';
-import Container from './components/container';
+import Container from './components/Container';
 import { LOCALES } from "./intl/locales";
 import { messages } from './intl/messages';
 import TitlesData from './components/TitlesData';
 import { Language } from './interfaces';
-
-import './App.scss';
 
 const App: React.FC = () => {
   const defaultLanguage: Language = {
@@ -26,8 +24,11 @@ const App: React.FC = () => {
       locale={localeLanguage.value}
     >
       <Routes>
+        <Route path="/" element={
+          <Navigate replace to="/login" />
+        } />
         <Route path='/login' element={
-          <RoutLogin />
+          <Login />
         } />
         <Route path='/users' element={
           <PrivateRoute components={

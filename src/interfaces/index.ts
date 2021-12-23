@@ -55,31 +55,14 @@ export interface Data {
   }
 }
 
-export interface GetData {
-    config?: Record<string, string>;
-    data: {
-        info: {
-            seed: string;
-            results: number;
-            page: number;
-            version: string;
-        }
-        results: Data;
-    }
-
-    headers?: Record<string, string>;
-    request: XMLHttpRequest;
-    status: number;
-    statusText: string;
-}
-
 export interface InitialState {
-  receivedData: Data[] | GetData | any,
-  userInfo: Data[] | GetData | any,
-  privateRout: boolean,
-  isPageGender: boolean,
-  isLoading: boolean,
-  numberUsers: number,
+  receivedData: Data[] | Data;
+  userInfo: Data[] | Data;
+  privateRout: boolean;
+  isPageGender: boolean;
+  isLoading: boolean;
+  isDataFetchError: boolean;
+  numberUsers: number;
 }
 
 export type Language = Record<string, string>;

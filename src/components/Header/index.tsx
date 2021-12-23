@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import styled from 'styled-components'
 
-import SideBar from '../sideBar'
+import SideBar from '../SideBar'
 import { BORDER_LANGUAGE, SWITCH_LANGUAGE } from '../../constants/style.colors'
 import { LOCALES } from '../../intl/locales'
 import { Language } from '../../interfaces'
@@ -20,6 +20,9 @@ const Select = styled.select`
     color: ${SWITCH_LANGUAGE};
     font-size: 12px;
     background: linear-gradient(45deg,#a8edeac4,#f7c1d294);
+    @media (max-width: 445px) {
+        margin-right: 0px;
+    }
 `;
 
 interface Props {
@@ -32,6 +35,7 @@ const Header = ({ setLocale }: Props) => {
             value: LOCALES[event.target.value],
             name: event.target.value
         }
+
         setLocale(local)
     }
 
@@ -50,9 +54,9 @@ const Header = ({ setLocale }: Props) => {
     return (
         <header className='header'>
             <div className='header_logo'>
-                <img 
-                    src={Logo} 
-                    alt="alt" 
+                <img
+                    src={Logo}
+                    alt="alt"
                     className="header_logo-img"
                 />
             </div>

@@ -6,8 +6,8 @@ interface Props {
     setLocale: React.Dispatch<React.SetStateAction<Language>>;
 }
 
-const Container = ({ setLocale, component}: Props) => {
-    return(
+const Container = ({ setLocale, component }: Props) => {
+    return (
         <>
             <Header setLocale={setLocale} />
             {component}

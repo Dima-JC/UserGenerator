@@ -7,7 +7,7 @@ import { Button } from '../commons/Button'
 
 import './routLogin.style.scss'
 
-const RoutLogin = () => {
+const Login = () => {
     const dispatch = useDispatch()
     const intl = useIntl();
 
@@ -26,4 +26,4 @@ const RoutLogin = () => {
     )
 }
 
-export default RoutLogin
+export default Login

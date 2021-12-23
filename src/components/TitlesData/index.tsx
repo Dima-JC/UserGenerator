@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
 
 import { addUserInfo, getData, namberUsersData } from "../../redux/actions";
-import { dataSelector, isLoading, numberUsers } from "../../redux/selectors";
+import { dataSelector, isDataFetchErrorSelector, isLoading, numberUsers } from "../../redux/selectors";
 import { Data } from "../../interfaces";
+import Loader from "../Loader";
 
 import './titlesData.stayle.scss'
 
@@ -14,6 +15,7 @@ const TitlesData = () => {
     const selectorData = useSelector(dataSelector)
     const loading = useSelector(isLoading)
     const countUsers = useSelector(numberUsers)
+    const isError = useSelector(isDataFetchErrorSelector)
     const dispatch = useDispatch()
 
     const addInfoIser = (item: Data) => {
@@ -67,13 +69,18 @@ const TitlesData = () => {
         )
     }
 
-    const dataMap = useMemo(() => selectorData.map(mappedData), [selectorData])
+    const dataMap = useMemo(() => (selectorData as Data[]).map(mappedData), [selectorData])
+
+    if (isError) return <div className='erorr'>Error!</div>
 
     return (
         <>
             {!loading
-                ? 'Loading'
-                : <div className='users' onScroll={event => onScrollList(event)}>
+                ? <Loader />
+                : <div 
+                    className='users' 
+                    onScroll={event => onScrollList(event)}
+                >
                     {dataMap}
                 </div>
             }

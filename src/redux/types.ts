@@ -6,3 +6,4 @@ export const FETCH_DATA: string = 'FETCH_DATA';
 export const IS_LOADING: string = 'IS_LOADING';
 export const COUNT_USERS_DATA: string = "COUNT_USERS_DATA";
 export const LOCALE_LANGUAGE: string = "LOCALE_LANGUAGE";
+export const IS_DATA_FETCH_ERROR: string = "IS_DATA_FETCH_ERROR";

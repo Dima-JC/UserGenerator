@@ -6,13 +6,26 @@
 
     .userInfo_cart {
         width: 650px;
-        height: 315px;
+        min-height: 315px;
         display: flex;
         border: solid silver 1px;
         border-radius: 8px;
         margin-top: 50px;
+        margin-bottom: 20px;
         justify-content: space-around;
         background: linear-gradient(45deg, #a8edea, #fed6e3);
+
+        @media (max-width: 670px) {
+            min-width: 375px;
+            max-width: 450px;
+            padding: 0 0 0 45px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        @media (max-width: 425px) {
+            min-width: 260px;
+            max-width: 280px;
+        }
 
         .userInfo_cart__photo {
             width: 220px;
@@ -27,7 +40,8 @@
             }
         }
     }
-    .warning{
+
+    .warning {
         color: red;
         font-size: 20px;
     }

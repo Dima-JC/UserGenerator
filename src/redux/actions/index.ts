@@ -1,12 +1,14 @@
-import { 
+import { Data } from '../../interfaces'
+
+import {
     COUNT_USERS_DATA,
     FETCH_DATA,
-    PRIVATE_ROUTE, 
-    SET_IS_PAGE_GENDER, 
+    PRIVATE_ROUTE,
+    SET_IS_PAGE_GENDER,
     USER_INFO
 } from '../types'
 
-export const getData = (pageName: any) => {
+export const getData = (pageName: number) => {
     return {
         type: FETCH_DATA,
         pageName
@@ -14,7 +16,7 @@ export const getData = (pageName: any) => {
 }
 
 export const privateRoute = (payload: boolean) => {
-    return {        
+    return {
         type: PRIVATE_ROUTE,
         payload
     }
@@ -27,7 +29,7 @@ export const setIsPageCar = (pageName: string) => {
     }
 }
 
-export const addUserInfo = (data: any[]) => {
+export const addUserInfo = (data: Data[]) => {
     return {
         type: USER_INFO,
         data

@@ -1,7 +1,8 @@
-import { GetData, InitialState } from "../interfaces";
+import { Data, InitialState } from "../interfaces";
 import {
     COUNT_USERS_DATA,
     DATA_RECEIVED,
+    IS_DATA_FETCH_ERROR,
     IS_LOADING,
     PRIVATE_ROUTE,
     SET_IS_PAGE_GENDER,
@@ -14,20 +15,21 @@ const initialState: InitialState = {
     privateRout: false,
     isPageGender: false,
     isLoading: false,
+    isDataFetchError: false,
     numberUsers: 1,
 }
 
 interface Action {
     payload: boolean;
-    data: GetData;
+    data: Data;
     type: string;
     pageName: number;
 }
 
-export default function RootReducer(state: InitialState = initialState, { type, payload, data, pageName }: Action) {
+export default function RootReducer(state = initialState, { type, payload, data, pageName }: Action) {
     switch (type) {
         case DATA_RECEIVED:
-            return { ...state, receivedData: state.receivedData.concat(data.data.results) }
+            return { ...state, receivedData: (state.receivedData as Data[]).concat(data) }
 
         case USER_INFO:
             return { ...state, userInfo: data! }
@@ -40,6 +42,9 @@ export default function RootReducer(state: InitialState = initialState, { type, 
 
         case SET_IS_PAGE_GENDER:
             return { ...state, isPageGender: (payload as boolean) }
+
+        case IS_DATA_FETCH_ERROR:
+            return { ...state, isDataFetchError: true }
 
         case COUNT_USERS_DATA:
             return { ...state, numberUsers: pageName }
