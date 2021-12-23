@@ -3,13 +3,14 @@ import { FormattedMessage } from 'react-intl'
 import { useSelector } from 'react-redux'
 
 import { userInfoselector } from '../../redux/selectors'
+import { Data } from '../../interfaces'
 
 import './userInfo.style.scss'
 
 const UserInfo = () => {
     const data = useSelector(userInfoselector)
 
-    const mappedItems = (item: any) => {
+    const mappedItems = (item: Data) => {
         return (
             <div className='userInfo_cart' key={item.login.uuid}>
                 <div className="userInfo_cart__photo">

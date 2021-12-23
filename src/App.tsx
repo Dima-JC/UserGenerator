@@ -9,15 +9,16 @@ import Container from './components/container';
 import { LOCALES } from "./intl/locales";
 import { messages } from './intl/messages';
 import TitlesData from './components/TitlesData';
+import { Language } from './interfaces';
 
 import './App.scss';
 
 const App: React.FC = () => {
-  const defaultLanguage: Record<string, string> = {
+  const defaultLanguage: Language = {
     value: LOCALES.ENGLISH
   }
-
-  const [localeLanguage, setLocaleLanguage] = useState<any>(defaultLanguage);
+  
+  const [localeLanguage, setLocaleLanguage] = useState<Language>(defaultLanguage);
 
   return (
     <IntlProvider

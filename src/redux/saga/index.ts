@@ -1,20 +1,16 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 
+import { DATA_RECEIVED, FETCH_DATA, IS_LOADING } from '../types';
 import { GET } from '../../requests';
 
-import { DATA_RECEIVED, FETCH_DATA, IS_LOADING } from '../types';
-
-export function* fetchData() {    
+export function* fetchData ({pageName}: any) {    
     try {
-        const data: { data: any } = yield call(GET);
-        yield put({ type: DATA_RECEIVED, data})
-        yield put ({ type: IS_LOADING, payload: false })
+        const data: { data: any } = yield call(GET, pageName);
+        yield put({ type: DATA_RECEIVED, data })
+        yield put ({ type: IS_LOADING, payload: true })
     }
     catch (e) {
         yield console.log(e);
-    }
-    finally {
-        yield put ({ type: IS_LOADING, payload: true })
     }
 }
 

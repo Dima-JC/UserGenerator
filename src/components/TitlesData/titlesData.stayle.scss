@@ -1,4 +1,6 @@
 .users {
+    height: 600px;
+    overflow: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -38,3 +40,6 @@
         background-color: #01baef;
     }
 }
+    .users::-webkit-scrollbar{
+        width: 0;
+    }

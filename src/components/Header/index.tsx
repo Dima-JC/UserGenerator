@@ -1,12 +1,12 @@
 import { useMemo } from 'react'
-import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 
 import SideBar from '../sideBar'
 import { BORDER_LANGUAGE, SWITCH_LANGUAGE } from '../../constants/style.colors'
 import { LOCALES } from '../../intl/locales'
+import { Language } from '../../interfaces'
 
-import Logo from '../ascets/img/png/logo.png'
+import Logo from '../ascets/img/svg/logo.svg'
 import './header.style.scss'
 
 const Select = styled.select`
@@ -23,11 +23,10 @@ const Select = styled.select`
 `;
 
 interface Props {
-    setLocale: React.Dispatch<React.SetStateAction<any>>;
+    setLocale: React.Dispatch<React.SetStateAction<Language>>;
 }
 
 const Header = ({ setLocale }: Props) => {
-
     const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const local: Record<string, string> = {
             value: LOCALES[event.target.value],
@@ -36,7 +35,7 @@ const Header = ({ setLocale }: Props) => {
         setLocale(local)
     }
 
-    const itemsMap = (item: string) => {
+    const optionMap = (item: string) => {
         return (
             <option
                 key={item}
@@ -46,12 +45,16 @@ const Header = ({ setLocale }: Props) => {
         )
     }
 
-    const mappedItems = useMemo(() => Object.keys(LOCALES).map(itemsMap), [LOCALES])
+    const mappedItems = useMemo(() => Object.keys(LOCALES).map(optionMap), [LOCALES])
 
     return (
         <header className='header'>
             <div className='header_logo'>
-                <img src={Logo} alt="alt" className="header_logo-img" />
+                <img 
+                    src={Logo} 
+                    alt="alt" 
+                    className="header_logo-img"
+                />
             </div>
             <div className='header_buttons'>
                 <SideBar />

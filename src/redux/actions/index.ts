@@ -1,13 +1,15 @@
 import { 
+    COUNT_USERS_DATA,
     FETCH_DATA,
     PRIVATE_ROUTE, 
     SET_IS_PAGE_GENDER, 
     USER_INFO
 } from '../types'
 
-export const getData = () => {
+export const getData = (pageName: any) => {
     return {
         type: FETCH_DATA,
+        pageName
     }
 }
 
@@ -29,5 +31,12 @@ export const addUserInfo = (data: any[]) => {
     return {
         type: USER_INFO,
         data
+    }
+}
+
+export const namberUsersData = (pageName: number) => {
+    return {
+        type: COUNT_USERS_DATA,
+        pageName
     }
 }

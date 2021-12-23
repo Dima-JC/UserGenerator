@@ -1,8 +1,8 @@
 import { useIntl } from "react-intl";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
-import { privateRoute } from "../../redux/actions";
 
+import { privateRoute } from "../../redux/actions";
 import { Button } from "../commons/Button"
 
 const SideBar = () => {
@@ -11,7 +11,6 @@ const SideBar = () => {
     const entrance = () => dispatch(privateRoute(false))
     const intl = useIntl();
 
-    
     return (
         <div className="header_rout-button">
             <Link to='/users'>
