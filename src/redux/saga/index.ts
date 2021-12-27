@@ -1,9 +1,9 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 
 import {
-    DATA_RECEIVED,
+    SET_DATA_RECEIVED,
     FETCH_DATA,
-    IS_DATA_FETCH_ERROR,
+    DID_FETCHING_FAIL,
     IS_LOADING
 } from '../types';
 
@@ -17,12 +17,15 @@ interface Props {
 
 export function* fetchData({ pageName }: Props) {
     try {
-        const data: { data: Data } = yield call(GET_DATE_UNITS, pageName);
-        yield put({ type: DATA_RECEIVED, data })
         yield put({ type: IS_LOADING, payload: true })
+        const data: { data: Data } = yield call(GET_DATE_UNITS, pageName);
+        yield put({ type: SET_DATA_RECEIVED, data })
     }
     catch (e) {
-        yield put({ type: IS_DATA_FETCH_ERROR });
+        yield put({ type: DID_FETCHING_FAIL });
+    }
+    finally {
+        yield put({ type: IS_LOADING, payload: false })
     }
 }
 

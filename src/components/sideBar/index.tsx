@@ -2,7 +2,7 @@ import { useIntl } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 
-import { isActiveButton, privateRoute } from "../../redux/actions";
+import { setIsActiveButton, setIsPrivateRoute } from "../../redux/actions";
 import { isActiveButtonSelector } from "../../redux/selectors";
 import { Button } from "../commons/Button"
 
@@ -11,9 +11,9 @@ const SideBar = () => {
     const intl = useIntl();
     const dispatch = useDispatch()
     
-    const entrance = () => {
-        dispatch(isActiveButton(''));
-        dispatch(privateRoute(false));
+    const logout = () => {
+        dispatch(setIsActiveButton(''));
+        dispatch(setIsPrivateRoute(false));
         localStorage.setItem('privateRoute', 'false');
     }
 
@@ -25,7 +25,7 @@ const SideBar = () => {
                         isActive === '/users' ? 'button active' : "button"
                     }
                     onClick={
-                        () => dispatch(isActiveButton('/users'))
+                        () => dispatch(setIsActiveButton('/users'))
                     }
                     btnText={
                         intl.formatMessage({ id: "Users" })
@@ -38,7 +38,7 @@ const SideBar = () => {
                         isActive === '/user_info' ? 'button active' : "button"
                     }
                     onClick={
-                        () => dispatch(isActiveButton('/user_info'))
+                        () => dispatch(setIsActiveButton('/user_info'))
                     }
                     btnText={
                         intl.formatMessage({ id: "User Info" })
@@ -51,7 +51,7 @@ const SideBar = () => {
                     btnText={
                         intl.formatMessage({ id: "Log out" })
                     }
-                    onClick={entrance}
+                    onClick={logout}
                 />
             </Link>
         </div>

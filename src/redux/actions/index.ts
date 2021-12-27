@@ -5,8 +5,8 @@ import {
     FETCH_DATA,
     IS_ACTIVE_BUTTON,
     IS_LANGUAGE,
-    PRIVATE_ROUTE,
-    USER_INFO
+    SET_PRIVATE_ROUTE,
+    SET_USER_INFO
 } from '../types'
 
 export const getData = (pageName: number) => {
@@ -16,28 +16,28 @@ export const getData = (pageName: number) => {
     }
 }
 
-export const privateRoute = (payload: boolean) => {
+export const setIsPrivateRoute = (payload: boolean) => {
     return {
-        type: PRIVATE_ROUTE,
+        type: SET_PRIVATE_ROUTE,
         payload
     }
 }
 
 export const addUserInfo = (data: Data[]) => {
     return {
-        type: USER_INFO,
+        type: SET_USER_INFO,
         data
     }
 }
 
-export const namberUsersData = (pageName: number) => {
+export const setUserNumber = (pageName: number) => {
     return {
         type: COUNT_USERS_DATA,
         pageName
     }
 }
 
-export const isActiveButton = (isActive: string) => {
+export const setIsActiveButton = (isActive: string) => {
     return {
         type: IS_ACTIVE_BUTTON,
         isActive

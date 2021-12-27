@@ -2,13 +2,13 @@ import { useMemo } from 'react'
 import { FormattedMessage } from 'react-intl'
 import { useSelector } from 'react-redux'
 
-import { userInfoselector } from '../../../redux/selectors'
+import { userInfoSelector } from '../../../redux/selectors'
 import { Data } from '../../../interfaces'
 
 import './userInfo.style.scss'
 
 const UserInfo = () => {
-    const data = useSelector(userInfoselector)
+    const data = useSelector(userInfoSelector)
 
     const mappedItems = (item: Data) => {
         return (
