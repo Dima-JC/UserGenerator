@@ -56,13 +56,14 @@ export interface Data {
 }
 
 export interface InitialState {
-  receivedData: Data[] | Data;
+  receivedData: Data[];
   userInfo: Data[] | Data;
   privateRout: boolean;
-  isPageGender: boolean;
   isLoading: boolean;
   isDataFetchError: boolean;
   numberUsers: number;
+  isActiveButton: string;
+  isLanguage: string;
 }
 
 export type Language = Record<string, string>;

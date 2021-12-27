@@ -1,21 +1,32 @@
 import { useIntl } from "react-intl";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
 
-import { privateRoute } from "../../redux/actions";
+import { isActiveButton, privateRoute } from "../../redux/actions";
+import { isActiveButtonSelector } from "../../redux/selectors";
 import { Button } from "../commons/Button"
 
 const SideBar = () => {
-    const dispatch = useDispatch()
+    const isActive = useSelector(isActiveButtonSelector)
     const intl = useIntl();
-
-    const entrance = () => dispatch(privateRoute(false))
+    const dispatch = useDispatch()
+    
+    const entrance = () => {
+        dispatch(isActiveButton(''));
+        dispatch(privateRoute(false));
+        localStorage.setItem('privateRoute', 'false');
+    }
 
     return (
         <div className="header_rout-button">
             <Link to='/users'>
                 <Button
-                    className="button"
+                    className={
+                        isActive === '/users' ? 'button active' : "button"
+                    }
+                    onClick={
+                        () => dispatch(isActiveButton('/users'))
+                    }
                     btnText={
                         intl.formatMessage({ id: "Users" })
                     }
@@ -23,7 +34,12 @@ const SideBar = () => {
             </Link>
             <Link to='/user_info'>
                 <Button
-                    className="button"
+                    className={
+                        isActive === '/user_info' ? 'button active' : "button"
+                    }
+                    onClick={
+                        () => dispatch(isActiveButton('/user_info'))
+                    }
                     btnText={
                         intl.formatMessage({ id: "User Info" })
                     }
@@ -35,9 +51,7 @@ const SideBar = () => {
                     btnText={
                         intl.formatMessage({ id: "Log out" })
                     }
-                    onClick={
-                        entrance
-                    }
+                    onClick={entrance}
                 />
             </Link>
         </div>

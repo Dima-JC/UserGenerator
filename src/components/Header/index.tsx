@@ -1,10 +1,12 @@
 import { useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 
 import SideBar from '../SideBar'
-import { BORDER_LANGUAGE, SWITCH_LANGUAGE } from '../../constants/style.colors'
 import { LOCALES } from '../../intl/locales'
-import { Language } from '../../interfaces'
+import { privateRoute } from '../../redux/selectors'
+import { setLanguage } from '../../redux/actions'
+import { BORDER_LANGUAGE, SWITCH_LANGUAGE } from '../../constants/style.colors'
 
 import Logo from '../ascets/img/svg/logo.svg'
 import './header.style.scss'
@@ -20,23 +22,23 @@ const Select = styled.select`
     color: ${SWITCH_LANGUAGE};
     font-size: 12px;
     background: linear-gradient(45deg,#a8edeac4,#f7c1d294);
+    cursor: pointer;
+    
+    :hover {
+        box-shadow: 0px 0px 11px 5px rgb(255 255 255 / 61%);
+    }
+
     @media (max-width: 445px) {
         margin-right: 0px;
     }
 `;
 
-interface Props {
-    setLocale: React.Dispatch<React.SetStateAction<Language>>;
-}
+const Header = () => {
+    const dispatch = useDispatch()
+    const isPrivate = useSelector(privateRoute)
 
-const Header = ({ setLocale }: Props) => {
-    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const local: Record<string, string> = {
-            value: LOCALES[event.target.value],
-            name: event.target.value
-        }
-
-        setLocale(local)
+    const changelanguage = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        dispatch(setLanguage(LOCALES[event.target.value]))
     }
 
     const optionMap = (item: string) => {
@@ -61,8 +63,11 @@ const Header = ({ setLocale }: Props) => {
                 />
             </div>
             <div className='header_buttons'>
-                <SideBar />
-                <Select onChange={handleChange}>
+                {isPrivate
+                    ? <SideBar />
+                    : ''
+                }
+                <Select onChange={changelanguage}>
                     {mappedItems}
                 </Select>
             </div>

@@ -1,13 +1,11 @@
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
-import { privateRoute } from '../redux/selectors';
-
 interface Props {
-  components: any
+  components: JSX.Element
 }
 
 export const PrivateRoute = ({components}: Props) => {
-  const auth = useSelector(privateRoute)
+  const auth: boolean = JSON.parse(localStorage.getItem('privateRoute')!)
+  
   return auth ? components : <Navigate to="/login" />;
 }

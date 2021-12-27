@@ -22,6 +22,8 @@ export const messages: Props = {
     "User Info": "User Info",
     "Log out": "Log out",
     "no users info": "Select a user to see their info!",
+    "male": "male",
+    "female": "female",
   },
   [LOCALES.RUSSIAN]: {
     "name": "Имя",
@@ -40,6 +42,8 @@ export const messages: Props = {
     "User Info": "Информация о пользователе",
     "Log out": "Выйти",
     "no users info": "Выберите пользователя, чтобы увидеть его инфо!",
+    "male": "мужской",
+    "female": "женский",
   },
   [LOCALES.UKRAINE]: {
     "name": "Iм'я",
@@ -58,5 +62,7 @@ export const messages: Props = {
     "User Info": "Інформація про користувача",
     "Log out": "Вийти",
     "no users info": "Виберіть користувача, щоб побачити його інфо!",
+    "male": "чоловiчий",
+    "female": "жiночий",
   },
 }

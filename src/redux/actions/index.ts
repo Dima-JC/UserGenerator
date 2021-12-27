@@ -3,8 +3,9 @@ import { Data } from '../../interfaces'
 import {
     COUNT_USERS_DATA,
     FETCH_DATA,
+    IS_ACTIVE_BUTTON,
+    IS_LANGUAGE,
     PRIVATE_ROUTE,
-    SET_IS_PAGE_GENDER,
     USER_INFO
 } from '../types'
 
@@ -22,13 +23,6 @@ export const privateRoute = (payload: boolean) => {
     }
 }
 
-export const setIsPageCar = (pageName: string) => {
-    return {
-        type: SET_IS_PAGE_GENDER,
-        payload: pageName === "male"
-    }
-}
-
 export const addUserInfo = (data: Data[]) => {
     return {
         type: USER_INFO,
@@ -40,5 +34,19 @@ export const namberUsersData = (pageName: number) => {
     return {
         type: COUNT_USERS_DATA,
         pageName
+    }
+}
+
+export const isActiveButton = (isActive: string) => {
+    return {
+        type: IS_ACTIVE_BUTTON,
+        isActive
+    }
+}
+
+export const setLanguage = (isActive: string) => {
+    return {
+        type: IS_LANGUAGE,
+        isActive
     }
 }

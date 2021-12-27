@@ -1,32 +1,37 @@
+import { useLocation } from "react-router-dom";
 import { Data, InitialState } from "../interfaces";
+import { LOCALES } from "../intl/locales";
 import {
     COUNT_USERS_DATA,
     DATA_RECEIVED,
+    IS_ACTIVE_BUTTON,
     IS_DATA_FETCH_ERROR,
+    IS_LANGUAGE,
     IS_LOADING,
     PRIVATE_ROUTE,
-    SET_IS_PAGE_GENDER,
     USER_INFO
 } from "./types";
-
-const initialState: InitialState = {
-    receivedData: [],
-    userInfo: [],
-    privateRout: false,
-    isPageGender: false,
-    isLoading: false,
-    isDataFetchError: false,
-    numberUsers: 1,
-}
 
 interface Action {
     payload: boolean;
     data: Data;
     type: string;
     pageName: number;
+    isActive: string
 }
 
-export default function RootReducer(state = initialState, { type, payload, data, pageName }: Action) {
+const initialState: InitialState = {
+    receivedData: [],
+    userInfo: [],
+    privateRout: JSON.parse(localStorage.getItem('privateRoute')!),
+    isLoading: false,
+    isDataFetchError: false,
+    numberUsers: 1,
+    isActiveButton: window.location.pathname,
+    isLanguage: LOCALES.ENGLISH
+}
+
+export default function RootReducer(state = initialState, { type, payload, data, pageName, isActive }: Action) {
     switch (type) {
         case DATA_RECEIVED:
             return { ...state, receivedData: (state.receivedData as Data[]).concat(data) }
@@ -40,14 +45,17 @@ export default function RootReducer(state = initialState, { type, payload, data,
         case IS_LOADING:
             return { ...state, isLoading: (payload as boolean) }
 
-        case SET_IS_PAGE_GENDER:
-            return { ...state, isPageGender: (payload as boolean) }
-
         case IS_DATA_FETCH_ERROR:
             return { ...state, isDataFetchError: true }
 
         case COUNT_USERS_DATA:
             return { ...state, numberUsers: pageName }
+
+        case IS_ACTIVE_BUTTON:
+            return { ...state, isActiveButton: isActive }
+
+        case IS_LANGUAGE:
+            return { ...state, isLanguage: isActive }
 
         default:
             return state

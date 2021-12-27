@@ -4,21 +4,23 @@ import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
 
-import { addUserInfo, getData, namberUsersData } from "../../redux/actions";
-import { dataSelector, isDataFetchErrorSelector, isLoading, numberUsers } from "../../redux/selectors";
+import { addUserInfo, getData, isActiveButton, namberUsersData } from "../../redux/actions";
+import { stateSelector } from "../../redux/selectors";
 import { Data } from "../../interfaces";
 import Loader from "../Loader";
 
 import './titlesData.stayle.scss'
 
 const TitlesData = () => {
-    const selectorData = useSelector(dataSelector)
-    const loading = useSelector(isLoading)
-    const countUsers = useSelector(numberUsers)
-    const isError = useSelector(isDataFetchErrorSelector)
+    const { 
+        receivedData, isLoading, 
+        numberUsers, isDataFetchError 
+    } = useSelector(stateSelector)
+    
     const dispatch = useDispatch()
 
     const addInfoIser = (item: Data) => {
+        dispatch(isActiveButton('/user_info'))
         dispatch(addUserInfo([item]))
     }
 
@@ -28,40 +30,40 @@ const TitlesData = () => {
             === (event.target as HTMLElement).scrollHeight;
 
         if (scrollBottom) {
-            dispatch(namberUsersData(countUsers + 1))
+            dispatch(namberUsersData(numberUsers + 1))
         }
     }
 
     useEffect(() => {
-        dispatch(getData(countUsers))
-    }, [countUsers])
+        dispatch(getData(numberUsers))
+    }, [numberUsers])
 
     const mappedData = (item: Data) => {
         const className = item.gender === 'female'
             ? 'male'
             : 'female';
         return (
-            <div key={uuid()} onClick={() => addInfoIser(item)} >
+            <div key={uuid()} className='users_cart' onClick={() => addInfoIser(item)} >
                 <Link to='/user_info' className={'cartUser ' + className}>
                     <div className='cartUser_img'>
                         <img
                             src={item.picture.large}
                             alt="alt"
-                            className='img'
+                            className={'img_' + className}
                         />
                     </div>
                     <div className='cartUser_info'>
                         <p><FormattedMessage id='last name' />
-                            - {item.name.last}
+                            : {item.name.last}
                         </p>
                         <p><FormattedMessage id='first name' />
-                            - {item.name.first}
+                            : {item.name.first}
                         </p>
                         <p><FormattedMessage id='gender' />
-                            - {item.gender}
+                            : <FormattedMessage id={item.gender} />
                         </p>
                         <p><FormattedMessage id='Date Birth' />
-                            - {item.dob.date.slice(0, 10)}
+                            : {item.dob.date.slice(0, 10)}
                         </p>
                     </div>
                 </Link>
@@ -69,13 +71,13 @@ const TitlesData = () => {
         )
     }
 
-    const dataMap = useMemo(() => (selectorData as Data[]).map(mappedData), [selectorData])
+    const dataMap = useMemo(() => (receivedData as Data[]).map(mappedData), [receivedData])
 
-    if (isError) return <div className='erorr'>Error!</div>
+    if (isDataFetchError) return <div className='erorr'>Error!</div>
 
     return (
         <>
-            {!loading
+            {!isLoading
                 ? <Loader />
                 : <div 
                     className='users' 
