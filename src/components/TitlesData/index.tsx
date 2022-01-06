@@ -4,12 +4,13 @@ import { FormattedMessage } from "react-intl";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from 'uuid';
 
-import { addUserInfo, getData, setIsActiveButton, setUserNumber } from "../../redux/actions";
+import { addUserInfo, getData, activeButton, setUserNumber } from "../../redux/actions";
 import { stateSelector } from "../../redux/selectors";
 import { Data } from "../../interfaces";
 import Loader from "../Loader";
 
 import './titlesData.stayle.scss'
+import { USERS_INFO } from "../../constants/path";
 
 const TitlesData = () => {
     const { 
@@ -21,7 +22,7 @@ const TitlesData = () => {
     const dispatch = useDispatch()
 
     const addInfoUser = (item: Data) => {
-        dispatch(setIsActiveButton('/user_info'))
+        dispatch(activeButton('/user_info'))
         dispatch(addUserInfo([item]))
     }
 
@@ -46,7 +47,7 @@ const TitlesData = () => {
             : 'female';
         return (
             <div key={uuid()} className='users_cart' onClick={() => addInfoUser(item)} >
-                <Link to='/user_info' className={'cartUser ' + className}>
+                <Link to={USERS_INFO} className={'cartUser ' + className}>
                     <div className='cartUser_img'>
                         <img
                             src={item.picture.large}
@@ -73,7 +74,7 @@ const TitlesData = () => {
         )
     }
 
-    const dataMap = useMemo(() => (receivedData as Data[]).map(mappedData), [receivedData])
+    const mapData = useMemo(() => (receivedData as Data[]).map(mappedData), [receivedData])
 
     if (isDataFetchError) return <div className='erorr'>Error!</div>
 
@@ -85,7 +86,7 @@ const TitlesData = () => {
                     className='users' 
                     onScroll={event => onScrollList(event)}
                 >
-                    {dataMap}
+                    {mapData}
                 </div>
             }
         </>

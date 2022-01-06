@@ -37,7 +37,7 @@ export const setUserNumber = (pageName: number) => {
     }
 }
 
-export const setIsActiveButton = (isActive: string) => {
+export const activeButton = (isActive: string) => {
     return {
         type: IS_ACTIVE_BUTTON,
         isActive

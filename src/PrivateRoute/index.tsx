@@ -5,7 +5,7 @@ interface Props {
 }
 
 export const PrivateRoute = ({components}: Props) => {
-  const auth: boolean = JSON.parse(localStorage.getItem('privateRoute')!)
+  const auth: boolean = JSON.parse(localStorage.getItem('isAuth')!)
   
   return auth ? components : <Navigate to="/login" />;
 }

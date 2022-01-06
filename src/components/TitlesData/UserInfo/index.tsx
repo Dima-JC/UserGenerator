@@ -40,7 +40,7 @@ const UserInfo = () => {
         )
     }
 
-    const mapitems = useMemo(() => (data as Data[]).map(mappedItems), [data])
+    const mapItems = useMemo(() => (data as Data[]).map(mappedItems), [data])
 
     return (
         <>
@@ -49,7 +49,7 @@ const UserInfo = () => {
                     ? <p className='warning'>
                         <FormattedMessage id="no users info" />
                     </p>
-                    : mapitems
+                    : mapItems
                 }
             </div>
         </>
