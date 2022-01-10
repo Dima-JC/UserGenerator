@@ -1,30 +1,21 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { IntlProvider } from "react-intl";
 
-import './App.scss';
+import Container from './components/container';
+import { messages } from './intl/messages';
+import { languageSelector } from './redux/selectors';
 
-
-
-function App() {
-  const [appState, setAppState] = useState();
-
-  useEffect(() => {
-    const apiUrl = 'https://randomuser.me/api/';
-    axios.get(apiUrl).then((resp) => {
-      const allPersons = resp.data;
-      setAppState(allPersons);
-    });
-  }, [setAppState]);
-
-  console.log(appState);
-  
+const App: React.FC = () => {
+  const localeLanguage = useSelector(languageSelector)
 
   return (
-    <div className="App">
-      <header className="App-header">
-          Learn React
-      </header>
-    </div>
+    <IntlProvider
+      messages={messages[localeLanguage]}
+      locale={localeLanguage}
+    >
+      <Container />
+    </IntlProvider>
   );
 }
 
