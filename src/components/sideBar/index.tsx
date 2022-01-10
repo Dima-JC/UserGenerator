@@ -23,10 +23,10 @@ const SideBar = () => {
             <Link to={USERS}>
                 <Button
                     className={
-                        isActive === '/users' ? 'button active' : "button"
+                        isActive === USERS ? 'button active' : "button"
                     }
                     onClick={
-                        () => dispatch(activeButton('/users'))
+                        () => dispatch(activeButton(USERS))
                     }
                     btnText={
                         formatMessage({ id: "Users" })
@@ -36,10 +36,10 @@ const SideBar = () => {
             <Link to={USERS_INFO}>
                 <Button
                     className={
-                        isActive === '/user_info' ? 'button active' : "button"
+                        isActive === USERS_INFO ? 'button active' : "button"
                     }
                     onClick={
-                        () => dispatch(activeButton('/user_info'))
+                        () => dispatch(activeButton(USERS_INFO))
                     }
                     btnText={
                         formatMessage({ id: "User Info" })

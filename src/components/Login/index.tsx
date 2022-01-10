@@ -1,10 +1,10 @@
 import { useIntl } from 'react-intl'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { USERS } from '../../constants/path'
 
 import { activeButton, setIsPrivateRoute } from '../../redux/actions'
 import { Button } from '../commons/Button'
+import { USERS } from '../../constants/path'
 
 import './routLogin.style.scss'
 
@@ -14,7 +14,7 @@ const Login = () => {
 
     const entrance = () => {
         dispatch(setIsPrivateRoute(true))
-        dispatch(activeButton('/users'))
+        dispatch(activeButton(USERS))
         localStorage.setItem('isAuth', 'true')
     }
 

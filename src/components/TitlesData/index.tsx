@@ -22,7 +22,7 @@ const TitlesData = () => {
     const dispatch = useDispatch()
 
     const addInfoUser = (item: Data) => {
-        dispatch(activeButton('/user_info'))
+        dispatch(activeButton(USERS_INFO))
         dispatch(addUserInfo([item]))
     }
 
