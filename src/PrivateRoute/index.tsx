@@ -1,5 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
+import { LOGIN } from '../constants/path';
+
 interface Props {
   components: JSX.Element
 }
@@ -7,5 +9,5 @@ interface Props {
 export const PrivateRoute = ({components}: Props) => {
   const auth: boolean = JSON.parse(localStorage.getItem('isAuth')!)
   
-  return auth ? components : <Navigate to="/login" />;
+  return auth ? components : <Navigate to={LOGIN} />;
 }
