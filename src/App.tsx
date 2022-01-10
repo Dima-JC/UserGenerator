@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { IntlProvider } from "react-intl";
 
-import Container from './components/Container';
+import Container from './components/container';
 import { messages } from './intl/messages';
 import { languageSelector } from './redux/selectors';
 

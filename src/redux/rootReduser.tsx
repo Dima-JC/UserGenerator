@@ -22,7 +22,7 @@ interface Action {
 const initialState: InitialState = {
     receivedData: [],
     userInfo: [],
-    privateRoute: JSON.parse(localStorage.getItem('privateRoute')!),
+    privateRoute: JSON.parse(localStorage.getItem('isAuth')!),
     isLoading: false,
     isDataFetchError: false,
     pageNumber: 1,

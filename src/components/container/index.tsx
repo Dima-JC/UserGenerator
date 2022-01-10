@@ -5,6 +5,7 @@ import { PrivateRoute } from "../../PrivateRoute";
 import Login from "../Login";
 import TitlesData from "../TitlesData";
 import UserInfo from "../TitlesData/UserInfo";
+import { LOGIN, USERS, USERS_INFO } from "../../constants/path";
 
 const Container = () => {
     return (
@@ -12,17 +13,17 @@ const Container = () => {
             <Header />
             <Routes>
                 <Route path="/" element={
-                    <Navigate replace to="/login" />
+                    <Navigate replace to={LOGIN} />
                 }/>
-                <Route path='/login' element={
+                <Route path={LOGIN} element={
                     <Login />
                 }/>
-                <Route path='/users' element={
+                <Route path={USERS} element={
                     <PrivateRoute components={
                     <TitlesData />
                 }/>}
                 />
-                <Route path='/user_info' element={
+                <Route path={USERS_INFO} element={
                     <PrivateRoute components={
                     <UserInfo />
                 }/>}

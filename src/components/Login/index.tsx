@@ -2,28 +2,29 @@ import { useIntl } from 'react-intl'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { setIsActiveButton, setIsPrivateRoute } from '../../redux/actions'
+import { activeButton, setIsPrivateRoute } from '../../redux/actions'
 import { Button } from '../commons/Button'
+import { USERS } from '../../constants/path'
 
 import './routLogin.style.scss'
 
 const Login = () => {
     const dispatch = useDispatch()
-    const intl = useIntl();
+    const { formatMessage } = useIntl();
 
     const entrance = () => {
         dispatch(setIsPrivateRoute(true))
-        dispatch(setIsActiveButton('/users'))
-        localStorage.setItem('privateRoute', 'true')
+        dispatch(activeButton(USERS))
+        localStorage.setItem('isAuth', 'true')
     }
 
     return (
         <div className='login'>
-            <Link to='/users'>
+            <Link to={USERS}>
                 <Button
                     onClick={entrance}
                     btnText={
-                        intl.formatMessage({ id: "Log in" })
+                        formatMessage({ id: "Log in" })
                     }
                     className='button'
                 />

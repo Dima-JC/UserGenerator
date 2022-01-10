@@ -1,55 +1,56 @@
 import { useIntl } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom"
+import { LOGIN, USERS, USERS_INFO } from "../../constants/path";
 
-import { setIsActiveButton, setIsPrivateRoute } from "../../redux/actions";
+import { activeButton, setIsPrivateRoute } from "../../redux/actions";
 import { isActiveButtonSelector } from "../../redux/selectors";
 import { Button } from "../commons/Button"
 
 const SideBar = () => {
     const isActive = useSelector(isActiveButtonSelector)
-    const intl = useIntl();
+    const { formatMessage } = useIntl();
     const dispatch = useDispatch()
     
     const logout = () => {
-        dispatch(setIsActiveButton(''));
+        dispatch(activeButton(''));
         dispatch(setIsPrivateRoute(false));
-        localStorage.setItem('privateRoute', 'false');
+        localStorage.setItem('isAuth', 'false');
     }
 
     return (
         <div className="header_rout-button">
-            <Link to='/users'>
+            <Link to={USERS}>
                 <Button
                     className={
-                        isActive === '/users' ? 'button active' : "button"
+                        isActive === USERS ? 'button active' : "button"
                     }
                     onClick={
-                        () => dispatch(setIsActiveButton('/users'))
+                        () => dispatch(activeButton(USERS))
                     }
                     btnText={
-                        intl.formatMessage({ id: "Users" })
+                        formatMessage({ id: "Users" })
                     }
                 />
             </Link>
-            <Link to='/user_info'>
+            <Link to={USERS_INFO}>
                 <Button
                     className={
-                        isActive === '/user_info' ? 'button active' : "button"
+                        isActive === USERS_INFO ? 'button active' : "button"
                     }
                     onClick={
-                        () => dispatch(setIsActiveButton('/user_info'))
+                        () => dispatch(activeButton(USERS_INFO))
                     }
                     btnText={
-                        intl.formatMessage({ id: "User Info" })
+                        formatMessage({ id: "User Info" })
                     }
                 />
             </Link>
-            <Link to='/login'>
+            <Link to={LOGIN}>
                 <Button
                     className="button"
                     btnText={
-                        intl.formatMessage({ id: "Log out" })
+                        formatMessage({ id: "Log out" })
                     }
                     onClick={logout}
                 />
